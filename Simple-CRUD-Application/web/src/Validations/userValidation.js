@@ -1,5 +1,5 @@
 let validFullName = (name)=>{return name.length > 0}
-let validMobileNumber = (number)=>{return number.length == 10}
+let validMobileNumber = (number)=>{return number.length === 10}
 
 
 export const validator = {
@@ -12,7 +12,7 @@ export const validator = {
 }
 
 export const isError = (errorObj)=>{
-    if(Object.keys(errorObj) == 0 ){
+    if(Object.keys(errorObj).length === 0 ){
         return false
     }
     return true 

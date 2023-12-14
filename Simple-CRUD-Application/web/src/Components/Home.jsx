@@ -18,7 +18,7 @@ const Home = () => {
     const validateData = () => {
         let errors = {}
         for (const key in data) {
-            if (!data[key]) {
+            if (!validator[key](data[key])) {
                 errors = { ...errors, [key]: errorMessages[key] }
             }
         }
@@ -27,8 +27,9 @@ const Home = () => {
     const onRegister = async (event) => {
         event.preventDefault()
         validateData()
+        console.log(formErrors)
         console.log(isError(formErrors))
-        if(!isError(formErrors)){
+        if(!formErrors){
             const url = import.meta.env?.VITE_SERVER_URL
             const resp = await axios.post(url,data)
             console.log(resp)
