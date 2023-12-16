@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import '../Style/global.css'
 import { userData } from '../User/user'
 import '../Style/global.css'
-import { isError, validator } from '../Validations/userValidation'
-// import { errors } from '../Validations/errors';
-import { errorMessages } from '../Utils/errorMessages';
+import { validator } from '../Validations/userValidation'
+import {errorMessages} from '../Utils/errorMessages';
+import {isEmpty} from '../Utils/isEmpty'
 import axios from 'axios';
 
 const Home = () => {
@@ -27,12 +27,11 @@ const Home = () => {
     const onRegister = async (event) => {
         event.preventDefault()
         validateData()
-        console.log(formErrors)
-        console.log(isError(formErrors))
-        if(!formErrors){
+        console.log(isEmpty(formErrors))
+        if(1){
             const url = import.meta.env?.VITE_SERVER_URL
-            const resp = await axios.post(url,data)
-            console.log(resp)
+            const resp = await axios.post(url,{...data})
+            console.log(`resp is ${JSON.stringify(resp)}`)
             switch (resp.status) {
                 case 200:
                     setResult("Registered Successfully")
